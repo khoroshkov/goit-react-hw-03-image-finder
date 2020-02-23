@@ -1,0 +1,16 @@
+.Wrapper {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: auto;
+  width: 300px;
+  height: 300px;
+}
+
+.Loader {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 100px;
+  margin: auto;
+}
