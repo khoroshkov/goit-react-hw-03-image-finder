@@ -80,7 +80,7 @@ export default class App extends Component {
     return (
       <div className={styles.App}>
         <SearchBar onSubmit={this.handleSubmit} />
-
+        {isLoading && <Loader />}
         {isModalOpen && (
           <Modal
             imgId={imgId}
@@ -89,7 +89,6 @@ export default class App extends Component {
           />
         )}
         <ImageGallery images={images} openModal={this.handleOpenModal} />
-        {isLoading && <Loader />}
         {error && <ErrorMessage text={error.message} />}
         {images.length === 0 && <NoResult />}
         {images.length >= 12 && <Button onLoadMore={this.handleLoadMore} />}

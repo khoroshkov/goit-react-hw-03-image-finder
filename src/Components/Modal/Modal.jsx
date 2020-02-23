@@ -1,10 +1,8 @@
-import React, { Component, createRef } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styles from "./Modal.module.css";
 
 export default class Modal extends Component {
-  overlayRef = createRef();
-
   static propTypes = {
     onCloseModal: PropTypes.func.isRequired,
     imgId: PropTypes.number.isRequired,
@@ -26,24 +24,18 @@ export default class Modal extends Component {
   };
 
   handleBackdropClick = e => {
-    const { current } = this.overlayRef;
-
-    if (current === e.target) {
+    if (e.target === e.currentTarget) {
       this.props.onCloseModal();
     }
   };
 
   render() {
-    const { imgId, images, onCloseModal } = this.props;
+    const { imgId, images } = this.props;
 
     const fullScreenImg = images.find(image => image.id === imgId);
 
     return (
-      <div
-        className={styles.Overlay}
-        ref={this.overlayRef}
-        onClick={onCloseModal}
-      >
+      <div className={styles.Overlay} onClick={this.handleBackdropClick}>
         <div className={styles.Modal}>
           <img src={fullScreenImg.largeImageURL} alt="" role="presentation" />
         </div>
